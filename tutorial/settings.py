@@ -17,17 +17,20 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 # Database Connection String
 
 # SQLite
-CONNECTION_STRING = 'sqlite:///scrapy_quotes.db'
+# CONNECTION_STRING = 'sqlite:///scrapy_quotes.db'
 
 # MySQL
 # CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}?charset=utf8".format(
-#     drivername="mysql",
-#     user="harrywang",
-#     passwd="tutorial",
-#     host="localhost",
-#     port="3306",
-#     db_name="scrapy_quotes",
-# )
+CONNECTION_STRING = "{drivername}+pymysql://{user}:{passwd}@{host}:{port}/{db_name}?charset=utf8".format(
+    drivername="mysql",
+    # user="harrywang",
+    # passwd="tutorial",
+    user="root",
+    passwd="",
+    host="localhost",
+    port="3306",
+    db_name="scrapy_quotes",
+)
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
