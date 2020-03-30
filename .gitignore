@@ -110,3 +110,6 @@ venv.bak/
 
 # sqlite
 *.db
+
+# item exporter
+*.jl
