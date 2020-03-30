@@ -10,6 +10,43 @@ from sqlalchemy.orm import sessionmaker
 from scrapy.exceptions import DropItem
 from tutorial.models import Quote, Author, Tag, db_connect, create_table
 import logging
+from scrapy.exporters import JsonLinesItemExporter
+
+# https://stackoverflow.com/questions/41066481/how-to-set-crawler-parameter-from-scrapy-spider
+class JsonLinesExporterPipeline(object):
+
+    def __init__(self):
+        # Storing output filename
+        self.file_name = 'quotes.jl'
+        # Creating a file handle and setting it to None
+        self.file_handle = None
+
+
+    def open_spider(self, spider):
+        print('Custom export opened')
+
+        # Opening file in binary-write mode
+        file = open(self.file_name, 'wb')
+        self.file_handle = file
+
+        # Creating a FanItemExporter object and initiating export
+        self.exporter = JsonLinesItemExporter(file)
+        self.exporter.start_exporting()
+    
+    def close_spider(self, spider):
+        print('Custom Exporter closed')
+
+        # Ending the export to file from FanItemExport object
+        self.exporter.finish_exporting()
+
+        # Closing the opened output file
+        self.file_handle.close()
+    
+    def process_item(self, item, spider):
+        # passing the item to FanItemExporter object for expoting to file
+        self.exporter.export_item(item)
+        return item
+
 
 class DuplicatesPipeline(object):
 
@@ -47,6 +84,7 @@ class SaveQuotesPipeline(object):
 
 
     def process_item(self, item, spider):
+
         """Save quotes in the database
         This method is called for every item pipeline component
         """

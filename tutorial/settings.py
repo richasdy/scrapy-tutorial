@@ -92,6 +92,7 @@ ITEM_PIPELINES = {
 
     'tutorial.pipelines.DuplicatesPipeline': 100,
     'tutorial.pipelines.SaveQuotesPipeline': 200,
+    'tutorial.pipelines.JsonLinesExporterPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
