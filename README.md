@@ -20,7 +20,34 @@ USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
 'DOWNLOAD_DELAY' : 20,
 ```
 * Use random pattern, make some random click, mouse movement, more human spider
+```python
+# how?
+```
 * Rotate url request, don do sequential
+```python
+# how?
+```
+* identifying as a popular browser, only work when cookies disable
+```python
+'DOWNLOADER_MIDDLEWARES' : {
+            'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+            'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
+        },
+'USER_AGENTS' : [
+            ('Mozilla/5.0 (X11; Linux x86_64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/57.0.2987.110 '
+            'Safari/537.36'),  # chrome
+            ('Mozilla/5.0 (X11; Linux x86_64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/61.0.3163.79 '
+            'Safari/537.36'),  # chrome
+            ('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) '
+            'Gecko/20100101 '
+            'Firefox/55.0')  # firefox
+        ],
+```
+* identifying as a popular browser
 
 ## Setup
 Tested with Python 3.6 via virtual environment:

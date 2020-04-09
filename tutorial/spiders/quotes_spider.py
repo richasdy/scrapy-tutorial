@@ -7,17 +7,36 @@ class QuotesSpider(scrapy.Spider):
     allowed_domains = ["toscrape.com"]
     start_urls = ['http://quotes.toscrape.com/']
 
+    # polite spider
     custom_settings = {
-        'HTTPCACHE_ENABLED': True, # developement only
+        # 'HTTPCACHE_ENABLED': True, # developement only
         'ITEM_PIPELINES' : {
             'tutorial.pipelines.DuplicatesPipeline': 100,
             'tutorial.pipelines.SaveQuotesPipeline': 200,
             'tutorial.pipelines.JsonLinesExporterPipeline': 300,
         },
         'ROBOTSTXT_OBEY' : True,
-        'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
+        # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
         'RANDOMIZE_DOWNLOAD_DELAY' : True,
-        'DOWNLOAD_DELAY' : 20,
+        # 'DOWNLOAD_DELAY' : 20,
+        'DOWNLOADER_MIDDLEWARES' : {
+            'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+            'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
+        },
+        'USER_AGENTS' : [ # rotate user agent
+            ('Mozilla/5.0 (X11; Linux x86_64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/57.0.2987.110 '
+            'Safari/537.36'),  # chrome
+            ('Mozilla/5.0 (X11; Linux x86_64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/61.0.3163.79 '
+            'Safari/537.36'),  # chrome
+            ('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) '
+            'Gecko/20100101 '
+            'Firefox/55.0')  # firefox
+        ],
+        'COOKIES_ENABLED' : False
 
     }
 
