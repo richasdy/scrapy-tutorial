@@ -36,7 +36,8 @@ class QuotesSpider(scrapy.Spider):
             'Gecko/20100101 '
             'Firefox/55.0')  # firefox
         ],
-        'COOKIES_ENABLED' : False
+        'COOKIES_ENABLED' : False,
+        'CONCURRENT_REQUESTS_PER_IP' : 1,
 
     }
 

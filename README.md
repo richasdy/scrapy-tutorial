@@ -47,7 +47,14 @@ USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
             'Firefox/55.0')  # firefox
         ],
 ```
-* identifying as a popular browser
+* cookies disable
+```python
+'COOKIES_ENABLED' : False,
+```
+* Concurrent Requests Per IP
+```python
+'CONCURRENT_REQUESTS_PER_IP' : 1,
+```
 
 ## Setup
 Tested with Python 3.6 via virtual environment:
