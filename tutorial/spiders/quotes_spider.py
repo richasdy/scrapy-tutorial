@@ -5,14 +5,14 @@ from tutorial.items import QuoteItem
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
     allowed_domains = ["toscrape.com"]
-    # start_urls = ['http://quotes.toscrape.com/']
-    start_urls = 'http://quotes.toscrape.com/'
+    start_urls = ['http://quotes.toscrape.com/']
+    # start_urls = 'http://quotes.toscrape.com/'
 
-    headers =  {
-            'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Encoding': 'gzip, deflate, sdch',
-            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
-        }
+    # headers =  {
+    #         'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    #         'Accept-Encoding': 'gzip, deflate, sdch',
+    #         'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
+    #     }
 
     # polite spider
     custom_settings = {
@@ -54,12 +54,20 @@ class QuotesSpider(scrapy.Spider):
         ],
         'COOKIES_ENABLED' : False,
         'CONCURRENT_REQUESTS_PER_IP' : 5,
-        'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt'
+        'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt',
+        'DEFAULT_REQUEST_HEADERS' : {
+            'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, sdch',
+            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
+            'Referer': 'http://www.google.com' 
+        },
+        'AUTOTHROTTLE_ENABLED' : True,
+        'AUTOTHROTTLE_DEBUG' : True,
 
     }
 
-    def start_requests(self):
-        yield scrapy.http.Request(self.start_urls, headers=self.headers)
+    # def start_requests(self):
+    #     yield scrapy.http.Request(self.start_urls, headers=self.headers)
 
 
     def parse(self, response):

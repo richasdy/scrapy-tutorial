@@ -59,6 +59,26 @@ USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
 ```python
 'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt',
 ```
+* Set full header
+```python
+'DEFAULT_REQUEST_HEADERS' : {
+            'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, sdch',
+            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
+        },
+```
+* Auto Throttle
+```python
+'AUTOTHROTTLE_ENABLED' : True,
+'AUTOTHROTTLE_DEBUG' : True,
+
+```
+* Set a Referrer Header
+
+```python
+'Referer': 'http://www.google.com' 
+
+```
 
 
 ## Setup
