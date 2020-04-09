@@ -4,6 +4,24 @@ This repo contains the code for my tutorial: A Minimalist End-to-End Scrapy Tut
 
 The website to crawl is [http://quotes.toscrape.com](http://quotes.toscrape.com).
 
+## Scraping Politely
+* Respects website.com/robots.txt
+```python
+ROBOTSTXT_OBEY = True
+```
+* Never degrades a website’s performance
+* Identifies contact information
+```python
+USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
+```
+* Never scraping too fast and too many pages, faster than a human ever can
+```python
+'RANDOMIZE_DOWNLOAD_DELAY' : True,
+'DOWNLOAD_DELAY' : 20,
+```
+* Use random pattern, make some random click, mouse movement, more human spider
+* Rotate url request, don do sequential
+
 ## Setup
 Tested with Python 3.6 via virtual environment:
 ```shell

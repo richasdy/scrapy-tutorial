@@ -7,6 +7,20 @@ class QuotesSpider(scrapy.Spider):
     allowed_domains = ["toscrape.com"]
     start_urls = ['http://quotes.toscrape.com/']
 
+    custom_settings = {
+        'HTTPCACHE_ENABLED': True, # developement only
+        'ITEM_PIPELINES' : {
+            'tutorial.pipelines.DuplicatesPipeline': 100,
+            'tutorial.pipelines.SaveQuotesPipeline': 200,
+            'tutorial.pipelines.JsonLinesExporterPipeline': 300,
+        },
+        'ROBOTSTXT_OBEY' : True,
+        'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
+        'RANDOMIZE_DOWNLOAD_DELAY' : True,
+        'DOWNLOAD_DELAY' : 20,
+
+    }
+
 
     def parse(self, response):
         self.logger.info('Parse function called on {}'.format(response.url))
