@@ -43,7 +43,7 @@ CONNECTION_STRING = 'sqlite:///scrapy_quotes.db'
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -88,12 +88,12 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 
-    'tutorial.pipelines.DuplicatesPipeline': 100,
-    'tutorial.pipelines.SaveQuotesPipeline': 200,
-    'tutorial.pipelines.JsonLinesExporterPipeline': 300,
-}
+#     'tutorial.pipelines.DuplicatesPipeline': 100,
+#     'tutorial.pipelines.SaveQuotesPipeline': 200,
+#     'tutorial.pipelines.JsonLinesExporterPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

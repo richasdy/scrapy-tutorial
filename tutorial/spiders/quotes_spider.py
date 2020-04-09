@@ -9,6 +9,13 @@ class QuotesSpider(scrapy.Spider):
 
     # polite spider
     custom_settings = {
+        'ITEM_PIPELINES' : {
+            'tutorial.pipelines.DuplicatesPipeline': 100,
+            'tutorial.pipelines.SaveQuotesPipeline': 200,
+            'tutorial.pipelines.JsonLinesExporterPipeline': 300,
+        },
+
+        # POLITE SPIDER
         # 'HTTPCACHE_ENABLED': True, # developement only
         'ITEM_PIPELINES' : {
             'tutorial.pipelines.DuplicatesPipeline': 100,
@@ -22,8 +29,8 @@ class QuotesSpider(scrapy.Spider):
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
-            'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-            'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+            # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+            # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
         },
         'USER_AGENTS' : [ # rotate user agent
             ('Mozilla/5.0 (X11; Linux x86_64) '
