@@ -22,6 +22,8 @@ class QuotesSpider(scrapy.Spider):
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
+            'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+            'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
         },
         'USER_AGENTS' : [ # rotate user agent
             ('Mozilla/5.0 (X11; Linux x86_64) '
@@ -37,7 +39,8 @@ class QuotesSpider(scrapy.Spider):
             'Firefox/55.0')  # firefox
         ],
         'COOKIES_ENABLED' : False,
-        'CONCURRENT_REQUESTS_PER_IP' : 1,
+        'CONCURRENT_REQUESTS_PER_IP' : 5,
+        'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt'
 
     }
 

@@ -55,6 +55,11 @@ USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
 ```python
 'CONCURRENT_REQUESTS_PER_IP' : 1,
 ```
+* Proxy / IP Rotation
+```python
+'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt',
+```
+
 
 ## Setup
 Tested with Python 3.6 via virtual environment:
