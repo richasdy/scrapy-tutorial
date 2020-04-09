@@ -5,7 +5,14 @@ from tutorial.items import QuoteItem
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
     allowed_domains = ["toscrape.com"]
-    start_urls = ['http://quotes.toscrape.com/']
+    # start_urls = ['http://quotes.toscrape.com/']
+    start_urls = 'http://quotes.toscrape.com/'
+
+    headers =  {
+            'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, sdch',
+            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
+        }
 
     # polite spider
     custom_settings = {
@@ -50,6 +57,9 @@ class QuotesSpider(scrapy.Spider):
         'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt'
 
     }
+
+    def start_requests(self):
+        yield scrapy.http.Request(self.start_urls, headers=self.headers)
 
 
     def parse(self, response):
