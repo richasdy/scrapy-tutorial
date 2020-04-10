@@ -79,7 +79,27 @@ USER_AGENT = 'MyCompany-MyCrawler (bot@mycompany.com)'
 'Referer': 'http://www.google.com' 
 
 ```
-
+* Use a Headless Browser
+```python
+# how?
+```
+* Avoid Honeypot Traps
+```python
+# how?
+```
+* Detect website changes
+```python
+# how?
+```
+* Use a CAPTCHA Solving Service
+```python
+# how?
+```
+* Scrape Out of the Google Cache
+```python
+start_urls = ['http://webcache.googleusercontent.com/search?q=cache%3Aquotes.toscrape.com%2F&oq=cache%3Aquotes.toscrape.com%2F&aqs=chrome..69i57j69i58.9678j0j9&sourceid=chrome&ie=UTF-8']
+```
+    
 
 ## Setup
 Tested with Python 3.6 via virtual environment:

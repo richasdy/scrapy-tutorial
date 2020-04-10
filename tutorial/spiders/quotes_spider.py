@@ -6,6 +6,8 @@ class QuotesSpider(scrapy.Spider):
     name = "quotes"
     allowed_domains = ["toscrape.com"]
     start_urls = ['http://quotes.toscrape.com/']
+    # start_urls = ['http://webcache.googleusercontent.com/search?q=cache%3Aquotes.toscrape.com%2F&oq=cache%3Aquotes.toscrape.com%2F&aqs=chrome..69i57j69i58.9678j0j9&sourceid=chrome&ie=UTF-8']
+    
     # start_urls = 'http://quotes.toscrape.com/'
 
     # headers =  {
@@ -29,7 +31,7 @@ class QuotesSpider(scrapy.Spider):
             'tutorial.pipelines.SaveQuotesPipeline': 200,
             'tutorial.pipelines.JsonLinesExporterPipeline': 300,
         },
-        'ROBOTSTXT_OBEY' : True,
+        # 'ROBOTSTXT_OBEY' : True,
         # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
         'RANDOMIZE_DOWNLOAD_DELAY' : True,
         # 'DOWNLOAD_DELAY' : 20,
