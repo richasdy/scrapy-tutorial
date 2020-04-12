@@ -19,11 +19,16 @@ class QuotesSpider(scrapy.Spider):
     # polite spider
     custom_settings = {
         'JSONLINES_PATH' : 'data/quotes.jl',
+        'CSV_PATH' : 'data/quotes.csv',
+        # 'XML_PATH' : 'data/quotes.xml',
+        # 'PICKLE_PATH' : 'data/quotes.pickle',
+        # 'MARSHAL_PATH' : 'data/quotes.marshal',
+        # 'SQLITE_PATH' : 'sqlite:///data/quotes.db', # belum bisa karena sqlachemi diluar wokflop scrapy
         'ITEM_PIPELINES' : {
             # 'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
             # 'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
             'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
-            # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
+            'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
             # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 500,
             # 'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 600,
             # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 700,
@@ -96,8 +101,8 @@ class QuotesSpider(scrapy.Spider):
             yield response.follow(author_url, self.parse_author, meta={'quote_item': quote_item})
 
         # go to Next page
-        # for a in response.css('li.next a'):
-            # yield response.follow(a, self.parse)
+        for a in response.css('li.next a'):
+            yield response.follow(a, self.parse)
 
     def parse_author(self, response):
         quote_item = response.meta['quote_item']

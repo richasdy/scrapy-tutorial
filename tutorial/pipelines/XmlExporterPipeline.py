@@ -10,11 +10,17 @@ from scrapy.exporters import XmlItemExporter
 # https://stackoverflow.com/questions/41066481/how-to-set-crawler-parameter-from-scrapy-spider
 class XmlExporterPipeline(object):
 
-    def __init__(self):
+    def __init__(self, file_name):
         # Storing output filename
-        self.file_name = 'data/quotes.xml'
+        self.file_name = file_name
         # Creating a file handle and setting it to None
         self.file_handle = None
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            file_name=crawler.settings.get('XML_PATH'),
+        )
 
 
     def open_spider(self, spider):
