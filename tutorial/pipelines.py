@@ -48,7 +48,7 @@ class JsonLinesExporterPipeline(object):
         return item
 
 
-class DuplicatesPipeline(object):
+class DuplicatesSQLitePipeline(object):
 
     def __init__(self):
         """
@@ -71,7 +71,7 @@ class DuplicatesPipeline(object):
             session.close()
 
 
-class SaveQuotesPipeline(object):
+class SaveQuotesSQLitePipeline(object):
     def __init__(self):
         """
         Initializes database connection and sessionmaker
