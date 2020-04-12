@@ -19,28 +19,27 @@ class QuotesSpider(scrapy.Spider):
     # polite spider
     custom_settings = {
         'ITEM_PIPELINES' : {
-            'tutorial.pipelines.DuplicatesPipeline': 100,
-            'tutorial.pipelines.SaveQuotesPipeline': 200,
+            'tutorial.pipelines.DuplicatesSQLitePipeline': 100,
+            'tutorial.pipelines.SaveQuotesSQLitePipeline': 200,
             'tutorial.pipelines.JsonLinesExporterPipeline': 300,
         },
 
+        #----------------
         # POLITE SPIDER
+        #----------------
+
         # 'HTTPCACHE_ENABLED': True, # developement only
-        'ITEM_PIPELINES' : {
-            'tutorial.pipelines.DuplicatesPipeline': 100,
-            'tutorial.pipelines.SaveQuotesPipeline': 200,
-            'tutorial.pipelines.JsonLinesExporterPipeline': 300,
-        },
         # 'ROBOTSTXT_OBEY' : True,
-        # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
         'RANDOMIZE_DOWNLOAD_DELAY' : True,
-        # 'DOWNLOAD_DELAY' : 20,
+        'DOWNLOAD_DELAY' : 5,
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
-            # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-            # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+            'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+            'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
         },
+        # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
+        # https://developers.whatismybrowser.com/useragents/explore/
         'USER_AGENTS' : [ # rotate user agent
             ('Mozilla/5.0 (X11; Linux x86_64) '
             'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -55,7 +54,9 @@ class QuotesSpider(scrapy.Spider):
             'Firefox/55.0')  # firefox
         ],
         'COOKIES_ENABLED' : False,
-        'CONCURRENT_REQUESTS_PER_IP' : 5,
+        'CONCURRENT_REQUESTS_PER_IP' : 10,
+        # https://free-proxy-list.net
+        # python get_proxy.py
         'ROTATING_PROXY_LIST_PATH' : 'get_proxy.txt',
         'DEFAULT_REQUEST_HEADERS' : {
             'Accept': 'application/json,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
