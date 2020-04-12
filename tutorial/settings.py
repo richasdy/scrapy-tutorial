@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 # Database Connection String
 
 # SQLite
-CONNECTION_STRING = 'sqlite:///scrapy_quotes.db'
+CONNECTION_STRING = 'sqlite:///data/quotes.db'
 
 # MySQL
 # CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}?charset=utf8".format(

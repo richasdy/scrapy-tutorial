@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.loader import ItemLoader
-from tutorial.items import QuoteItem
+from tutorial.items.QuoteItem import QuoteItem
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
@@ -21,7 +21,11 @@ class QuotesSpider(scrapy.Spider):
         'ITEM_PIPELINES' : {
             'tutorial.pipelines.DuplicatesSQLitePipeline.DuplicatesSQLitePipeline': 100,
             'tutorial.pipelines.SaveQuotesSQLitePipeline.SaveQuotesSQLitePipeline': 200,
-            'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
+            # 'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
+            # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 300,
+            # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 300,
+            'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 300,
+            'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 300,
         },
 
         #----------------
@@ -31,12 +35,12 @@ class QuotesSpider(scrapy.Spider):
         # 'HTTPCACHE_ENABLED': True, # developement only
         # 'ROBOTSTXT_OBEY' : True,
         'RANDOMIZE_DOWNLOAD_DELAY' : True,
-        'DOWNLOAD_DELAY' : 5,
+        # 'DOWNLOAD_DELAY' : 5,
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
-            'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-            'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+            # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+            # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
         },
         # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
         # https://developers.whatismybrowser.com/useragents/explore/
@@ -64,8 +68,8 @@ class QuotesSpider(scrapy.Spider):
             'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
             'Referer': 'http://www.google.com' 
         },
-        'AUTOTHROTTLE_ENABLED' : True,
-        'AUTOTHROTTLE_DEBUG' : True,
+        # 'AUTOTHROTTLE_ENABLED' : True,
+        # 'AUTOTHROTTLE_DEBUG' : True,
 
     }
 

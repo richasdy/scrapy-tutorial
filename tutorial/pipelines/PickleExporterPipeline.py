@@ -5,14 +5,14 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from scrapy.exporters import JsonLinesItemExporter
+from scrapy.exporters import PickleItemExporter
 
 # https://stackoverflow.com/questions/41066481/how-to-set-crawler-parameter-from-scrapy-spider
-class JsonLinesExporterPipeline(object):
+class PickleExporterPipeline(object):
 
     def __init__(self):
         # Storing output filename
-        self.file_name = 'data/quotes.jl'
+        self.file_name = 'data/quotes.pickle'
         # Creating a file handle and setting it to None
         self.file_handle = None
 
@@ -25,7 +25,7 @@ class JsonLinesExporterPipeline(object):
         self.file_handle = file
 
         # Creating a FanItemExporter object and initiating export
-        self.exporter = JsonLinesItemExporter(file)
+        self.exporter = PickleItemExporter(file)
         self.exporter.start_exporting()
     
     def close_spider(self, spider):
