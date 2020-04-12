@@ -3,7 +3,7 @@ from scrapy.exceptions import DropItem
 from tutorial.models import Quote, Author, Tag, db_connect, create_table
 import logging
 
-class SaveQuotesSQLitePipeline(object):
+class SQLiteSaveQuotesPipeline(object):
     def __init__(self):
         """
         Initializes database connection and sessionmaker

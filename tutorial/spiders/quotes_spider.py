@@ -19,13 +19,13 @@ class QuotesSpider(scrapy.Spider):
     # polite spider
     custom_settings = {
         'ITEM_PIPELINES' : {
-            'tutorial.pipelines.DuplicatesSQLitePipeline.DuplicatesSQLitePipeline': 100,
-            'tutorial.pipelines.SaveQuotesSQLitePipeline.SaveQuotesSQLitePipeline': 200,
-            # 'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
+            'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
+            'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
+            'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
             # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 300,
             # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 300,
-            'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 300,
-            'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 300,
+            # 'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 300,
+            # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 300,
         },
 
         #----------------

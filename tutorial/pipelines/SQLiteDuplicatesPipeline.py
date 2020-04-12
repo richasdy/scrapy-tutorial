@@ -3,7 +3,7 @@ from scrapy.exceptions import DropItem
 from tutorial.models import Quote, Author, Tag, db_connect, create_table
 import logging
 
-class DuplicatesSQLitePipeline(object):
+class SQLiteDuplicatesPipeline(object):
 
     def __init__(self):
         """
