@@ -18,14 +18,15 @@ class QuotesSpider(scrapy.Spider):
 
     # polite spider
     custom_settings = {
+        'JSONLINES_PATH' : 'data/quotes.jl',
         'ITEM_PIPELINES' : {
-            'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
-            'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
+            # 'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
+            # 'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
             'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
-            # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 300,
-            # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 300,
-            # 'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 300,
-            # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 300,
+            # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
+            # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 500,
+            # 'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 600,
+            # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 700,
         },
 
         #----------------
@@ -95,8 +96,8 @@ class QuotesSpider(scrapy.Spider):
             yield response.follow(author_url, self.parse_author, meta={'quote_item': quote_item})
 
         # go to Next page
-        for a in response.css('li.next a'):
-            yield response.follow(a, self.parse)
+        # for a in response.css('li.next a'):
+            # yield response.follow(a, self.parse)
 
     def parse_author(self, response):
         quote_item = response.meta['quote_item']
