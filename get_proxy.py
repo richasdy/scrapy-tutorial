@@ -5,7 +5,8 @@ def get_proxies():
     response = requests.get(url)
     parser = fromstring(response.text)
     proxies = set()
-    for i in parser.xpath('//tbody/tr')[:10]:
+    # for i in parser.xpath('//tbody/tr')[:10]:
+    for i in parser.xpath('//tbody/tr'):
         if i.xpath('.//td[7][contains(text(),"yes")]'):
             #Grabbing IP and corresponding PORT
             proxy = ":".join([i.xpath('.//td[1]/text()')[0], i.xpath('.//td[2]/text()')[0]])
