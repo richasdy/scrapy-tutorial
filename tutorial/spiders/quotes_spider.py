@@ -34,6 +34,7 @@ class QuotesSpider(scrapy.Spider):
             # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 700,
         },
 
+
         #----------------
         # POLITE SPIDER
         #----------------
