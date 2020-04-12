@@ -5,3 +5,4 @@ shub>=2.9.0
 SQLAlchemy>=1.3.6
 scrapy-useragents==0.0.1
 scrapy-rotating-proxies==0.6.2
+selenium==3.141.0
