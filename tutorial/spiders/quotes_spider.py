@@ -20,15 +20,17 @@ class QuotesSpider(scrapy.Spider):
     custom_settings = {
         'JSONLINES_PATH' : 'data/quotes.jl',
         'CSV_PATH' : 'data/quotes.csv',
-        # 'XML_PATH' : 'data/quotes.xml',
-        # 'PICKLE_PATH' : 'data/quotes.pickle',
-        # 'MARSHAL_PATH' : 'data/quotes.marshal',
-        # 'SQLITE_PATH' : 'sqlite:///data/quotes.db', # belum bisa karena sqlachemi diluar wokflop scrapy
+        'XML_PATH' : 'data/quotes.xml',
+        'PICKLE_PATH' : 'data/quotes.pickle',
+        'MARSHAL_PATH' : 'data/quotes.marshal',
+        'SQLITE_PATH' : 'sqlite:///data/quotes.db', # belum bisa karena sqlachemi diluar wokflow scrapy
+
         'ITEM_PIPELINES' : {
             # 'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
             # 'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
-            'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
-            'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
+            'tutorial.pipelines.PostgreSQLInsertPipeline.PostgreSQLInsertPipeline': 250,
+            # 'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
+            # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
             # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 500,
             # 'tutorial.pipelines.PickleExporterPipeline.PickleExporterPipeline': 600,
             # 'tutorial.pipelines.MarshalExporterPipeline.MarshalExporterPipeline': 700,
@@ -39,7 +41,7 @@ class QuotesSpider(scrapy.Spider):
         # POLITE SPIDER
         #----------------
 
-        # 'HTTPCACHE_ENABLED': True, # developement only
+        'HTTPCACHE_ENABLED': True, # developement only
         # 'ROBOTSTXT_OBEY' : True,
         'RANDOMIZE_DOWNLOAD_DELAY' : True,
         # 'DOWNLOAD_DELAY' : 5,

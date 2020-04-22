@@ -7,3 +7,4 @@ scrapy-useragents==0.0.1
 scrapy-rotating-proxies==0.6.2
 selenium==3.141.0
 scrapy-selenium==0.0.7
+psycopg2-binary==2.8.5
