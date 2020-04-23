@@ -1,6 +1,7 @@
 import scrapy
 from scrapy.loader import ItemLoader
 from tutorial.items.QuoteItem import QuoteItem
+from scrapy.shell import inspect_response
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
@@ -25,7 +26,6 @@ class QuotesSpider(scrapy.Spider):
         'XML_PATH' : 'data/quotes.xml',
         'PICKLE_PATH' : 'data/quotes.pickle',
         'MARSHAL_PATH' : 'data/quotes.marshal',
-        'SQLITE_PATH' : 'sqlite:///data/quotes.db', # belum bisa karena sqlachemi diluar wokflow scrapy
 
         'ITEM_PIPELINES' : {
             # 'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
@@ -90,6 +90,7 @@ class QuotesSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        inspect_response(response, self)
         self.logger.info('Parse function called on {}'.format(response.url))
         # quotes = response.xpath("//div[@class='quote']")
         quotes = response.css('div.quote')
@@ -117,4 +118,8 @@ class QuotesSpider(scrapy.Spider):
         loader.add_css('author_birthday', '.author-born-date::text')
         loader.add_css('author_bornlocation', '.author-born-location::text')
         loader.add_css('author_bio', '.author-description::text')
+
+        # for debugging
+        # inspect_response(response, self)
+
         yield loader.load_item()
