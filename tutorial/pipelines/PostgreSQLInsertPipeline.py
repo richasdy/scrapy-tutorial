@@ -15,7 +15,7 @@ class PostgreSQLInsertPipeline(object):
     def __init__(self):
 
         # semua config sebaiknya di file pipeline
-        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasusu
+        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasus
         # memang agak berbeda untuk database unstructure yang confignya hanya alamat
 
         self.connection = psycopg2.connect(
