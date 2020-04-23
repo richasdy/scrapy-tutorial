@@ -1,6 +1,7 @@
 # from pysqlite2 import dbapi2 as sqlite
 import sqlite3
 import logging
+from scrapy.shell import inspect_response
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -13,9 +14,9 @@ class SQLiteInsertPipeline(object):
     def __init__(self):
 
         # semua config sebaiknya di file pipeline
-        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasusu
+        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasus
         # memang agak berbeda untuk database unstructure yang confignya hanya alamat
-        
+
         self.connection = sqlite3.connect('data/quotes_simple.db')
         self.cursor = self.connection.cursor()
 
@@ -58,6 +59,9 @@ class SQLiteInsertPipeline(object):
         result = self.cursor.fetchone()
         # result adalah hasil fetch database, bukan item
         # logger.debug("Duplicate Check Result : %s" % str(result[5]))
+
+        # for debugging
+        # inspect_response(response, self)
 
         if result:
             logger.debug("Item already in database: %s" % item)
