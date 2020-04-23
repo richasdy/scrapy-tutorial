@@ -18,6 +18,8 @@ class QuotesSpider(scrapy.Spider):
 
     # polite spider
     custom_settings = {
+
+        # non stucture database
         'JSONLINES_PATH' : 'data/quotes.jl',
         'CSV_PATH' : 'data/quotes.csv',
         'XML_PATH' : 'data/quotes.xml',
@@ -28,7 +30,8 @@ class QuotesSpider(scrapy.Spider):
         'ITEM_PIPELINES' : {
             # 'tutorial.pipelines.SQLiteDuplicatesPipeline.SQLiteDuplicatesPipeline': 100,
             # 'tutorial.pipelines.SQLiteSaveQuotesPipeline.SQLiteSaveQuotesPipeline': 200,
-            'tutorial.pipelines.PostgreSQLInsertPipeline.PostgreSQLInsertPipeline': 250,
+            # 'tutorial.pipelines.PostgreSQLInsertPipeline.PostgreSQLInsertPipeline': 250,
+            'tutorial.pipelines.SQLiteInsertPipeline.SQLiteInsertPipeline': 251,
             # 'tutorial.pipelines.JsonLinesExporterPipeline.JsonLinesExporterPipeline': 300,
             # 'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
             # 'tutorial.pipelines.XmlExporterPipeline.XmlExporterPipeline': 500,
