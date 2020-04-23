@@ -12,6 +12,10 @@ class SQLiteInsertPipeline(object):
 
     def __init__(self):
 
+        # semua config sebaiknya di file pipeline
+        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasusu
+        # memang agak berbeda untuk database unstructure yang confignya hanya alamat
+        
         self.connection = sqlite3.connect('data/quotes_simple.db')
         self.cursor = self.connection.cursor()
 

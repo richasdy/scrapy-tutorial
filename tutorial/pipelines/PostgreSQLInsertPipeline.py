@@ -11,7 +11,12 @@ logging.basicConfig(
 logger = logging.getLogger('tutorial.pipelines.PostgreSQLInsertPipeline')
 
 class PostgreSQLInsertPipeline(object):
+
     def __init__(self):
+
+        # semua config sebaiknya di file pipeline
+        # karena selain config, ada database structure yang harus disesuaikan untuk setiap kasusu
+        # memang agak berbeda untuk database unstructure yang confignya hanya alamat
 
         self.connection = psycopg2.connect(
             host='localhost', 
