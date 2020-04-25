@@ -33,8 +33,8 @@ class SpringerEbookSpider(scrapy.Spider):
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
-            # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-            # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+            'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+            'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
         },
         # 'USER_AGENT' : 'MyCompany-MyCrawler (bot@mycompany.com)',
         # https://developers.whatismybrowser.com/useragents/explore/
