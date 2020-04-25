@@ -15,7 +15,7 @@ class SpringerEbookSpider(scrapy.Spider):
         for book in books:
             start_urls.append(book[4])
 
-    start_urls = ['http://link.springer.com/openurl?genre=book&isbn=978-3-030-19128-3']
+    # start_urls = ['http://link.springer.com/openurl?genre=book&isbn=978-3-030-19128-3']
 
     # polite spider
     custom_settings = {
