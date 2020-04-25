@@ -20,7 +20,9 @@ class FilesSpider(scrapy.Spider):
         # 'IMAGES_RESULT_FIELD' : 'images',
         
         'ITEM_PIPELINES' : {
-            'scrapy.pipelines.files.FilesPipeline': 1,
+            # 'scrapy.pipelines.files.FilesPipeline': 1,
+            'tutorial.pipelines.FilesRenamePipeline.FilesRenamePipeline': 1,
+            # 'tutorial.pipelines.MyFilesPipeline.MyFilesPipeline': 1,
             'scrapy.pipelines.images.ImagesPipeline': 2,
             'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
         },

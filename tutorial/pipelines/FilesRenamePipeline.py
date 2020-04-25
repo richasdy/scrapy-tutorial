@@ -3,17 +3,17 @@ from urllib.parse import urlparse
 
 from scrapy.pipelines.files import FilesPipeline
 
-class MyFilesPipeline(FilesPipeline):
-
-    # def file_path(self, request, response=None, info=None):
-    #     url = request.url
-    #     url_array = url.split('/')
-    #     file_name = url_array[len(url_array)-1]
-    #     return 'full/'+file_name
+class FilesRenamePipeline(FilesPipeline):
 
     def file_path(self, request, response=None, info=None):
-        return 'files/' + os.path.basename(urlparse(request.url).path)
+        url = request.url
+        url_array = url.split('/')
+        file_name = url_array[len(url_array)-1]
+        return 'full/'+file_name
 
+    # def file_path(self, request, response=None, info=None):
+    #     return 'files/' + os.path.basename(urlparse(request.url).path)
+    
     # # error karena banyak library yang g ada.
     # def file_path(self, request, response=None, info=None):
     #     media_guid = hashlib.sha1(to_bytes(request.url)).hexdigest()
