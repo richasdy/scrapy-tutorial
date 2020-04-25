@@ -9,6 +9,7 @@ class SpringerEbookSpider(scrapy.Spider):
     start_urls = []
     
     with open("data/Springer Ebooks.csv", "r") as f:
+    # with open("Springer Ebooks.csv", "r") as f:
         books = csv.reader(f, delimiter=';')
         next(books) # skip header row
         for book in books:
@@ -18,7 +19,7 @@ class SpringerEbookSpider(scrapy.Spider):
 
     # polite spider
     custom_settings = {
-        'CSV_PATH' : 'data/quotes.csv',
+        'CSV_PATH' : 'data/springer-books.csv',
         'ITEM_PIPELINES' : {
             'tutorial.pipelines.CsvExporterPipeline.CsvExporterPipeline': 400,
         },
