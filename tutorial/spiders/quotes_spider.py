@@ -90,7 +90,7 @@ class QuotesSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        inspect_response(response, self)
+        # inspect_response(response, self)
         self.logger.info('Parse function called on {}'.format(response.url))
         # quotes = response.xpath("//div[@class='quote']")
         quotes = response.css('div.quote')
